@@ -3,10 +3,11 @@ body{
     /* color scheme */
     --primary-background-color: #f7f7f7;
     --secondary-backrgound-color: #646cff;
+    --third-background-color: #ffffff;
     --text-color: #191a1a;
     --button-background-color: #1a1a1a;
     --button-text-color: #ffffff;
-    --button-hover-background-color: #ffffff;
+    --button-hover-background-color: var(--primary-background-color);
     --button-hover-text-color: #191a1a;
     --link-color: #646cff;
     --link-hover-color: var(--text-color);
