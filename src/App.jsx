@@ -6,6 +6,8 @@ import image_woman from "./assets/headshot-woman.png";
 import Card from "./components/Card";
 import Wrapper from "./components/Wrapper";
 import { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const App = () => {
   const profiles = [
@@ -46,12 +48,20 @@ const App = () => {
       email: "f@a.com",
     },
   ];
- //Variable to store the animation state
- const [animation, setAnimation] = useState(false);
+  //Variable to store the animation state
+  const [animation, setAnimation] = useState(false);
   //function to update the animation state
   const handleAnimation = () => {
-      setAnimation(false);
-  }
+    setAnimation(false);
+  };
+
+  //Variable to store the mode state
+  const [mode, setMode] = useState("light");
+  //function to update the mode state
+  const handleModeChange = () => {
+    setMode(mode === "light" ? "dark" : "light");
+  };
+
   // get titles
   const titles = [...new Set(profiles.map((profile) => profile.title))];
 
@@ -84,14 +94,14 @@ const App = () => {
   );
   const buttonStyle = {
     border: "1px solid #ccc",
-  }
+  };
 
   return (
     <>
       <header>
-        <Navbar/>
+        <Navbar mode={mode} updateMode={handleModeChange}/>
       </header>
-      <main>
+      <main className={mode === "light" ? "light" : "dark"}>
         <Wrapper>
           <h1>Profile App</h1>
         </Wrapper>
@@ -124,11 +134,19 @@ const App = () => {
                 value={search}
               />
             </div>
-            <button onClick={handleClear} style={buttonStyle}>Clear</button>
+            <button onClick={handleClear} style={buttonStyle}>
+              <span className="sr-only">Reset</span>
+              <FontAwesomeIcon icon={faXmark} />
+            </button>
           </div>
           <div className="profile-cards">
             {filtedProfiles.map((profile) => (
-              <Card key={profile.email} {...profile} animate={animation} updateAnimate={handleAnimation}/>
+              <Card
+                key={profile.email}
+                {...profile}
+                animate={animation}
+                updateAnimate={handleAnimation}
+              />
             ))}
           </div>
         </Wrapper>

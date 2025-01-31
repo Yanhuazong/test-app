@@ -40,9 +40,11 @@
     left: 0;
     object-fit: cover;
   }
-
-  p {
-    margin: 0;
-    color: var(--text-color);
+  .profile-card__content{
+    p {
+      margin: 0;
+      color: var(--text-color);
+    }
   }
+
 }
