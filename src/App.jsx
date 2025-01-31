@@ -46,7 +46,12 @@ const App = () => {
       email: "f@a.com",
     },
   ];
-
+ //Variable to store the animation state
+ const [animation, setAnimation] = useState(false);
+  //function to update the animation state
+  const handleAnimation = () => {
+      setAnimation(false);
+  }
   // get titles
   const titles = [...new Set(profiles.map((profile) => profile.title))];
 
@@ -54,19 +59,21 @@ const App = () => {
   //update the title on change of the drowndrop
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
-    console.log(event.target.value);
+    setAnimation(true);
   };
 
   const [search, setSearch] = useState("");
   //update the search on change of the input
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
+    setAnimation(true);
   };
 
   //clear the title and search
   const handleClear = () => {
     setTitle("");
     setSearch("");
+    setAnimation(true);
   };
 
   //filter the profiles based on the title
@@ -75,10 +82,14 @@ const App = () => {
       (title === "" || profile.title === title) &&
       profile.name.toLowerCase().includes(search.toLowerCase())
   );
+  const buttonStyle = {
+    border: "1px solid #ccc",
+  }
+
   return (
     <>
       <header>
-        <Navbar />
+        <Navbar/>
       </header>
       <main>
         <Wrapper>
@@ -113,11 +124,11 @@ const App = () => {
                 value={search}
               />
             </div>
-            <button onClick={handleClear}>Clear</button>
+            <button onClick={handleClear} style={buttonStyle}>Clear</button>
           </div>
           <div className="profile-cards">
             {filtedProfiles.map((profile) => (
-              <Card key={profile.email} {...profile} />
+              <Card key={profile.email} {...profile} animate={animation} updateAnimate={handleAnimation}/>
             ))}
           </div>
         </Wrapper>
