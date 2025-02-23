@@ -28,7 +28,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/add-profile" element={<AddProfilePage />} />
-          <Route path="profile/:id" element={<ProfileIndexPage />}>
+          <Route path="/profile/:id" element={<ProfileIndexPage />}>
             <Route index element={<ProfileDetailPage />} />
             <Route path="edit" element={<ProfileEditPage />} />
           </Route>
