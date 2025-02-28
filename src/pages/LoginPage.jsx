@@ -1,6 +1,7 @@
 import Wrapper from "../components/Wrapper";
 import AuthForm from "../components/AuthForm";
 import { Link } from "react-router-dom";
+import styles from "../styles/login.module.css";
 
 const Login = () => {
 
@@ -8,7 +9,7 @@ const Login = () => {
         <Wrapper>
             <h1>Login</h1>
             <AuthForm isRegister={false} />
-            <Link to="/register">Don't have an account? Register here</Link>
+            <Link to="/register" className={styles['register-link']}>Don't have an account? Register here</Link>
         </Wrapper>
     );
 }

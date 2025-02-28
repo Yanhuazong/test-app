@@ -4,10 +4,10 @@ import './index.css'
 import App from './App.jsx'
 import { ModeProvider } from "./contexts/ModeContext"; 
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ModeProvider>
       <App />
     </ModeProvider>
-  </StrictMode>,
-)
+  </StrictMode>
+);

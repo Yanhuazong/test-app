@@ -1,5 +1,5 @@
 import styles from "../styles/navbar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ModeContext from "../contexts/ModeContext"; 
 import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
@@ -7,6 +7,11 @@ import AuthContext from "../contexts/AuthContext";
 const Navbar = () => {
   const { mode, handleModeChange } = useContext(ModeContext);
   const { isLogin, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    logout();
+    navigate("/login");
+  }
   return (
     <nav className={`${styles["navbar"]}`}>
       <ul>
@@ -14,7 +19,7 @@ const Navbar = () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-        <Link to="/about">About</Link>
+          <Link to="/about">About</Link>
         </li>
         {
         isLogin &&
@@ -24,7 +29,7 @@ const Navbar = () => {
       </ul>
       {
         isLogin ?
-        <button onClick={logout}>Logout</button>
+        <button onClick={handleClick}>Logout</button>
         :
         <ul>
           <li><Link to="/register">Register</Link></li>
